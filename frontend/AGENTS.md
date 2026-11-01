@@ -1,3 +1,7 @@
+# Frontend instructions
+
+- Never create frontend test files unless the user explicitly asks for them.
+
 <!-- intent-skills:start -->
 ## Skill Loading
 
