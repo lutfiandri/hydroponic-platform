@@ -1,0 +1,4 @@
+.env
+/pocketbase/
+/mqtt/data/
+/backend/tmp/

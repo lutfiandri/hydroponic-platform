@@ -1,0 +1,27 @@
+services:
+  mqtt:
+    image: eclipse-mosquitto:2
+    restart: unless-stopped
+    user: "${POCKETBASE_UID:-1000}:${POCKETBASE_GID:-1000}"
+    ports:
+      - "127.0.0.1:1883:1883"
+    volumes:
+      - ./mqtt/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro,Z
+      - ./mqtt/data:/mosquitto/data:Z
+
+  pocketbase:
+    image: adrianmusante/pocketbase:0.40
+    restart: unless-stopped
+    user: "${POCKETBASE_UID:-1000}:${POCKETBASE_GID:-1000}"
+    ports:
+      - "127.0.0.1:8090:8090"
+    environment:
+      POCKETBASE_ADMIN_EMAIL: ${POCKETBASE_ADMIN_EMAIL:?Set POCKETBASE_ADMIN_EMAIL in .env}
+      POCKETBASE_ADMIN_PASSWORD: ${POCKETBASE_ADMIN_PASSWORD:?Set POCKETBASE_ADMIN_PASSWORD in .env}
+      POCKETBASE_ADMIN_UPSERT: "false"
+      POCKETBASE_MIGRATION_DIR: /tmp/pocketbase-migrations
+      POCKETBASE_OPTS: --automigrate=false
+      POCKETBASE_ENCRYPTION_KEY: ${POCKETBASE_ENCRYPTION_KEY:?Set POCKETBASE_ENCRYPTION_KEY in .env}
+    volumes:
+      - ./pocketbase:/pocketbase:z
+      - ./db-migration:/migrations:ro,z
