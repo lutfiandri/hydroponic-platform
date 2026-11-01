@@ -4,7 +4,9 @@
 
 Bangun ulang frontend menjadi satu dashboard di `/`, mengikuti struktur wireframe pada `/home/lutfiandri/Pictures/Screenshots/Screenshot From 2026-11-01 23-25-33.png`, tetapi menggunakan visual standar shadcn. Data dummy dulu. Layout mobile satu kolom, tanpa navigasi ke halaman lain. User memberi kebebasan merapikan visual selama tetap mengikuti struktur tersebut.
 
-Antislop selalu `during`; preferensi ini sudah ditulis di `AGENTS.md` dan tidak perlu ditanyakan lagi.
+Antislop selalu `during`; preferensi ini sudah ditulis di `AGENTS.md` dan tidak perlu ditanyakan lagi. Commit harus kecil dan terfokus, bukan bulk commit.
+
+Terminologi kode wajib bahasa Inggris profesional: identifier, nama file/modul, tipe, fungsi, variabel, field API, tabel/kolom database, serta nilai enum/status internal. Bahasa Indonesia hanya untuk copy yang ditampilkan kepada pengguna; bukan penamaan kode/schema. Locale tampilan tetap `id-ID`.
 
 ## Tujuan dan batas scope
 
@@ -101,7 +103,8 @@ Pertahankan React, TanStack Start/Router, Vite, Nitro, TypeScript, Tailwind, uti
 - Tidak ada tautan atau tombol tanpa perilaku. Jika tidak ada interaksi, jangan menambah tab stop.
 - Kontras teks minimal 4,5:1; teks besar dan elemen nonteks bermakna minimal 3:1. Nilai diperiksa, bukan diasumsikan lolos karena memakai tema gelap.
 - Periksa viewport lebar 320, 375, 430, 768, dan 1280px: tanpa horizontal scroll, metrik terbaca, serta container tetap maksimal 768px di layar besar.
-- Test kecil untuk jumlah status dari fixture, array kosong, serta format angka Indonesia. Tidak memasang test framework besar untuk logika sederhana; gunakan test runner bawaan Node bila versi lokal mendukung TypeScript.
+- Jangan membuat file test frontend kecuali user secara eksplisit memintanya. Instruksi ini ditambahkan ke `frontend/AGENTS.md` atas permintaan user setelah persetujuan desain.
+- Periksa jumlah status dari fixture, array kosong, serta format angka Indonesia dengan assert inline lewat Node, tanpa membuat file test, test runner, atau script test tambahan.
 - Jalankan generate routes, pemeriksaan TypeScript, build, lint proyek, dan wajib `npm --prefix frontend run lint:shadcn`.
 - Periksa hasil di browser, console, render awal/hydration, serta pastikan tidak ada navigasi atau elemen interaktif mati. Jangan mengklaim verifikasi browser jika tool/browser tidak tersedia.
 
